@@ -1,13 +1,15 @@
-# Api
+# API
 
-[x] - Register (POST)
-[] - Login (POST)
-[] - Auth (GET)
+## Authentication
+
+- [x] `POST /register` - User registration
+- [ ] `POST /login` - User login
+- [ ] `GET /auth` - Check authentication status
 
 ## Notes
 
-[] - NewNote (POST)
-[] - GetNotes (GET)
-[] - GetNoteByID (GET)
-[] - DeleteNote (DELETE)
-[] - UpdateNote (PUT)
+- [ ] `POST /notes` - Create new note
+- [ ] `GET /notes` - Get all notes
+- [ ] `GET /notes/:id` - Get note by ID
+- [ ] `DELETE /notes/:id` - Delete note
+- [ ] `PUT /notes/:id` - Update note
