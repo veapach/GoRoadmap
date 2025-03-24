@@ -2,9 +2,9 @@
 
 ## Authentication
 
-- [x] `POST /register` - User registration
-- [x] `POST /login` - User login
-- [ ] `GET /auth` - Check authentication status
+- [x] `POST /api/users/register` - User registration
+- [x] `POST /api/users/login` - User login
+- [x] `AuthMiddleware` - Check authentication status
 
 ## Notes
 

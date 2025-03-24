@@ -17,7 +17,7 @@ func main() {
 	r.POST("/api/users/register", users.Register)
 	r.POST("/api/users/login", users.Login)
 
-	r.GET("/users", func(c *gin.Context) {
+	r.GET("/users", users.AuthMiddleware(), func(c *gin.Context) {
 		var users []db.User
 		if err := db.DB.Find(&users).Error; err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Ошибка при получении пользователей"})
