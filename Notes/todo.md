@@ -1,6 +1,6 @@
 # Api
 
-[] - Register (POST)
+[x] - Register (POST)
 [] - Login (POST)
 [] - Auth (GET)
 
