@@ -1,12 +1,11 @@
 package db
 
 import (
-	"fmt"
 	"log"
 	"os"
 
 	"github.com/joho/godotenv"
-	"gorm.io/driver/postgres"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
@@ -20,8 +19,9 @@ type Note struct {
 
 type User struct {
 	gorm.Model
-	Name  string `gorm:"not null" json:"name" binding:"required"`
-	Notes []Note
+	Name     string `gorm:"not null" json:"name" binding:"required"`
+	Password string `gorm:"not null" json:"password" binding:"required"`
+	Notes    []Note
 }
 
 func InitDB() {
@@ -31,7 +31,7 @@ func InitDB() {
 	}
 
 	var err2 error
-	DB, err2 = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	DB, err2 = gorm.Open(sqlite.Open(dsn), &gorm.Config{})
 	if err2 != nil {
 		log.Fatal("Failed to connect to DB:", err2)
 	}
@@ -45,14 +45,10 @@ func loadEnv() (string, error) {
 		return "", err
 	}
 
-	host := os.Getenv("HOST")
-	port := os.Getenv("DB_PORT")
-	user := os.Getenv("USER")
-	pass := os.Getenv("PASSWORD")
-	dbname := os.Getenv("DB_NAME")
+  dbName := os.Getenv("DB_NAME") + ".db"
+  if dbName == ""{
+    dbName = "notes.db"
+  }
 
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", host, user, pass, dbname, port)
-
-	return dsn, nil
-
+  return dbName, nil
 }
