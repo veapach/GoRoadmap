@@ -14,7 +14,8 @@ func main() {
 
 	r := gin.Default()
 
-	r.POST("/user", users.Register) 
+	r.POST("/api/users/register", users.Register)
+	r.POST("/api/users/login", users.Login)
 
 	r.GET("/users", func(c *gin.Context) {
 		var users []db.User

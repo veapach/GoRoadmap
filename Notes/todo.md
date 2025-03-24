@@ -3,7 +3,7 @@
 ## Authentication
 
 - [x] `POST /register` - User registration
-- [ ] `POST /login` - User login
+- [x] `POST /login` - User login
 - [ ] `GET /auth` - Check authentication status
 
 ## Notes
