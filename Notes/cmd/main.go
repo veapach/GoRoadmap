@@ -21,6 +21,7 @@ func main() {
   // Notes
   r.POST("/api/notes/create", users.AuthMiddleware(), notes.CreateNote)
   r.GET("/api/notes/get-all", users.AuthMiddleware(), notes.GetAllNotes)
+  r.GET("/api/notes/:note_id", users.AuthMiddleware(), notes.GetNoteByID)
 
 	r.Run()
 }
