@@ -19,7 +19,8 @@ func main() {
 	r.POST("/api/users/login", users.Login)
 
   // Notes
-  r.POST("/api/notes/create", notes.CreateNote)
+  r.POST("/api/notes/create", users.AuthMiddleware(), notes.CreateNote)
+  r.GET("/api/notes/get-all-notes", users.AuthMiddleware(), notes.GetAllNotes)
 
 	r.Run()
 }

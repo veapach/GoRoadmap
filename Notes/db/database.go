@@ -15,7 +15,7 @@ type Note struct {
 	gorm.Model
 	Title  string `gorm:"not null" json:"title"`
 	Text   string `gorm:"not null" json:"text" binding:"required"`
-	UserId uint   `json:"user_id"`
+	UserId uint   `gorm:"not null" json:"user_id"`
 }
 
 type User struct {
