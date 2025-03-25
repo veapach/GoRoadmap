@@ -11,5 +11,5 @@
 - [x] `POST /api/notes/create` - Create new note
 - [x] `GET /api/notes/get-all` - Get all notes
 - [x] `GET /api/notes/:id` - Get note by ID
-- [x] `DELETE /notes/:id` - Delete note
-- [ ] `PUT /notes/:id` - Update note
+- [x] `DELETE /api/notes/:id` - Delete note
+- [x] `PUT /api/notes/:id` - Update note
