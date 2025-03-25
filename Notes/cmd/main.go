@@ -2,8 +2,8 @@ package main
 
 import (
 	"Notes/db"
+	"Notes/internal/notes"
 	"Notes/internal/users"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,18 +14,12 @@ func main() {
 
 	r := gin.Default()
 
+  // Users
 	r.POST("/api/users/register", users.Register)
 	r.POST("/api/users/login", users.Login)
 
-	r.GET("/users", users.AuthMiddleware(), func(c *gin.Context) {
-		var users []db.User
-		if err := db.DB.Find(&users).Error; err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "Ошибка при получении пользователей"})
-			return
-		}
-
-		c.JSON(http.StatusOK, users)
-	})
+  // Notes
+  r.POST("/api/notes/create", notes.CreateNote)
 
 	r.Run()
 }

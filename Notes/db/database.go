@@ -13,7 +13,8 @@ var DB *gorm.DB
 
 type Note struct {
 	gorm.Model
-	Title  string `json:"title"`
+	Title  string `gorm:"not null" json:"title"`
+	Text   string `gorm:"not null" json:"text" binding:"required"`
 	UserId uint   `json:"user_id"`
 }
 
@@ -45,10 +46,10 @@ func loadEnv() (string, error) {
 		return "", err
 	}
 
-  dbName := os.Getenv("DB_NAME") + ".db"
-  if dbName == ""{
-    dbName = "notes.db"
-  }
+	dbName := os.Getenv("DB_NAME") + ".db"
+	if dbName == "" {
+		dbName = "notes.db"
+	}
 
-  return dbName, nil
+	return dbName, nil
 }
