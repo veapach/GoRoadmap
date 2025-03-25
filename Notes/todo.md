@@ -8,8 +8,8 @@
 
 ## Notes
 
-- [x] `POST /notes` - Create new note
-- [ ] `GET /notes` - Get all notes
+- [x] `POST /api/notes/create` - Create new note
+- [x] `GET /api/notes/get-all` - Get all notes
 - [ ] `GET /notes/:id` - Get note by ID
 - [ ] `DELETE /notes/:id` - Delete note
 - [ ] `PUT /notes/:id` - Update note

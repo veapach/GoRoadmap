@@ -20,7 +20,7 @@ func main() {
 
   // Notes
   r.POST("/api/notes/create", users.AuthMiddleware(), notes.CreateNote)
-  r.GET("/api/notes/get-all-notes", users.AuthMiddleware(), notes.GetAllNotes)
+  r.GET("/api/notes/get-all", users.AuthMiddleware(), notes.GetAllNotes)
 
 	r.Run()
 }
