@@ -5,6 +5,7 @@ import (
 	"Notes/internal/notes"
 	"Notes/internal/users"
 
+  "github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,6 +14,12 @@ func main() {
 	db.InitDB()
 
 	r := gin.Default()
+
+  config := cors.DefaultConfig()
+  config.AllowAllOrigins = true
+  config.AllowMethods = []string{"GET", "POST", "PUT", "PATH", "DELETE", "HEAD", "OPTIONS"}
+  config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Authorization"}
+  r.Use(cors.New(config))
 
   // Users
 	r.POST("/api/users/register", users.Register)
@@ -25,5 +32,5 @@ func main() {
   r.DELETE("/api/notes/delete/:note_id", users.AuthMiddleware(), notes.DeleteNoteByID)
   r.PUT("/api/notes/update/:note_id", users.AuthMiddleware(), notes.UpdateNoteByID)
 
-	r.Run()
+  r.Run()
 }
