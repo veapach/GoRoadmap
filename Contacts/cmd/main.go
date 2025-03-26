@@ -2,6 +2,7 @@ package main
 
 import (
 	"Contacts/db"
+	"Contacts/internals/contacts"
 	"Contacts/internals/middlewares"
 	"Contacts/internals/users"
 	"net/http"
@@ -26,6 +27,9 @@ func main() {
 		}
 		c.JSON(http.StatusOK, gin.H{"user_id": userID})
 	})
+
+	// Contacts
+	r.POST("/api/contacts/create", middlewares.CheckAuth(), contacts.Create)
 
 	r.Run()
 }
