@@ -2,7 +2,9 @@ package main
 
 import (
 	"Contacts/db"
+	"Contacts/internals/middlewares"
 	"Contacts/internals/users"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,6 +17,15 @@ func main() {
 	// Users
 	r.POST("/api/users/register", users.Register)
 	r.POST("/api/users/login", users.Login)
+
+	r.GET("/", middlewares.CheckAuth(), func(c *gin.Context) {
+		userID, exists := c.Get("user_id")
+		if !exists {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "user_id не в контексте"})
+			return
+		}
+		c.JSON(http.StatusOK, gin.H{"user_id": userID})
+	})
 
 	r.Run()
 }
