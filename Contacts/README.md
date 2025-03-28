@@ -8,8 +8,8 @@
 
 ## Contacts
 
-- [ ] `POST /api/contacts/create` - Create new contact
-- [ ] `GET /api/contacts/all` - Get all contacts from user
+- [x] `POST /api/contacts/create` - Create new contact
+- [x] `GET /api/contacts/all` - Get all contacts from user
 - [ ] `GET /api/contacts/:id` - Get contact from user by id
 - [ ] `DELETE /api/contacts/:id` - Delete contact
 - [ ] `PUT /api/contacts/:id` - Update contact 
