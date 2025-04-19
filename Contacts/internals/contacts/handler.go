@@ -80,3 +80,27 @@ func GetAll(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"contacts": contacts})
 }
+
+func GetByID(c *gin.Context) {
+	contactID := c.Param("contact_id")
+
+	userID, exists := c.Get("user_id")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Пользователь не авторизован"})
+		return
+	}
+
+	var contact db.Contact
+	if err := db.DB.Where("user_id = ? AND id = ?", userID, contactID).Find(&contact).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Ошибка при поиске контакта"})
+		return
+	}
+
+	if contact.ID == 0 {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Контакт не найден"})
+		return
+	}
+
+	c.JSON(http.StatusOK, contact)
+
+}

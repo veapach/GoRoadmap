@@ -31,6 +31,7 @@ func main() {
 	// Contacts
 	r.POST("/api/contacts/create", middlewares.CheckAuth(), contacts.Create)
 	r.GET("/api/contacts/all", middlewares.CheckAuth(), contacts.GetAll)
+	r.GET("/api/contacts/:id", middlewares.CheckAuth(), contacts.GetByID)
 
 	r.Run()
 }
